@@ -1,20 +1,15 @@
 <script lang="ts" setup>
+import { useAuthStore } from '../stores/useAuthStore';
+
 const form = ref({
   email: "",
   password: ""
 })
 
-async function handleLogin() {
-  // Récupération du cookie csrf quand la fonctionnalité en back sera présente
-  // await useApiFetch("/csrf-token");
+const auth = useAuthStore();
 
-  await useApiFetch("/user/signin", {
-    method: "POST",
-    body: form.value
-  })
-
-  const { data } = await useApiFetch("/user/check");
-    
+async function handleLogin () {
+  const {error} =  await auth.login(form.value)
 }
 
 </script>

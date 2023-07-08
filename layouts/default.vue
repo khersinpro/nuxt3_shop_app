@@ -1,7 +1,17 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useAuthStore } from '../stores/useAuthStore';
+
+const auth = useAuthStore();
+
+const handleLogout = async () => {
+  await auth.logout();
+}
+</script>
 
 <template>
   <div>
+    <button @click="handleLogout">Logout</button>
+    <pre>{{ auth.user }}</pre>
     <ul>
       <li>
         <NuxtLink to="/">Home</NuxtLink>
