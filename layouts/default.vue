@@ -10,22 +10,22 @@ const handleLogout = async () => {
 
 <template>
   <div>
-    <button @click="handleLogout">Logout</button>
+    <button v-if="auth.isLoggedIn" @click="handleLogout">Logout</button>
     <pre>{{ auth.user }}</pre>
     <ul>
-      <li>
-        <NuxtLink to="/">Home</NuxtLink>
+      <li v-if="auth.isLoggedIn">
+        <NuxtLink   to="/">Home</NuxtLink>
       </li>
-      <li>
+      <li v-if="!auth.isLoggedIn">
         <NuxtLink to="/register">Register</NuxtLink>
       </li>
-      <li>
+      <li v-if="!auth.isLoggedIn">
         <NuxtLink to="/login">Login</NuxtLink>
       </li>
-      <li>
+      <li v-if="auth.isLoggedIn">
         <NuxtLink to="/auth-only">Auth only</NuxtLink>
       </li>
-      <li>
+      <li v-if="!auth.isLoggedIn">
         <NuxtLink to="/guest-only">Guest only</NuxtLink>
       </li>
     </ul>

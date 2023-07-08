@@ -1,5 +1,10 @@
 <script lang="ts" setup>
+import {definePageMeta} from "#imports";
 import { useAuthStore } from '../stores/useAuthStore';
+
+definePageMeta({
+  middleware: ["guest"]
+})
 
 const form = ref({
   email: "",
