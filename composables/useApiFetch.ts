@@ -13,16 +13,15 @@ export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) 
     if (process.server) {
       headers = {
         ...headers,
-        ...useRequestHeaders(["cookie"])
+        ...useRequestHeaders(["cookie"]) // Permet de recupérer les cookie en ssr
       }
     }
-
     
     return useFetch("http://localhost:4200/api" + path, {
       watch: false,           // pour eviter que le form s'envoie a chaque changement
       credentials: "include", // pour stocker le cookie
       ...options,
-      ...headers
+      headers: headers,
     });
   
 }

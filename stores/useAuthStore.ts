@@ -4,13 +4,21 @@ import { defineStore } from "pinia";
 // Déclaration des modèles
 type User = {
     id: number,
-    name: string,
+    firstName: string,
+    lastName: String,
     email: string
 }
 
 type Credentials = {
     email: string,
     password: string
+}
+
+type RegisterInfo = {
+    firstName: String,
+    lastName: String,
+    email: String,
+    password: String
 }
 
 export const useAuthStore = defineStore('auth', () => {
@@ -41,12 +49,28 @@ export const useAuthStore = defineStore('auth', () => {
         return login
     }
 
+    // Fonction pour gérer l'inscription
+    async function register(registerinfo: RegisterInfo) {
+        const register = await useApiFetch("/user/signup", {
+            method: "POST",
+            body: registerinfo
+        })
+
+        return register;
+    }
+
+    // Déconnexion
     async function logout () {
         await useApiFetch('/user/logout')
         user.value = null
         navigateTo('/login')
     }
 
+    // Récupération du nom complet de l'utilisateur connecté
+    function fullname() {
+        return user.value?.firstName + " " + user.value?.lastName
+    }
+
     // Retour des fonctions et données du store
-    return {user, login, isLoggedIn, fetchUser, logout}
+    return {user, login, isLoggedIn, fetchUser, logout, register, fullname}
 })
