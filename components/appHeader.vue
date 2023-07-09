@@ -34,6 +34,7 @@ const handleLogout = async () => {
               <a class="nav-link" href="#" @click="handleLogout"><i class="fa-solid fa-right-from-bracket me-2"></i> Déconnexion</a>
             </li>
           </ul>
+          
         </div>
       </div>
     </nav>
