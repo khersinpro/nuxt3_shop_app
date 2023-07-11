@@ -30,8 +30,17 @@ const handleLogout = async () => {
             <li class="nav-item" v-if="auth.isLoggedIn">
               <NuxtLink class="nav-link" to="/profile"> <i class="fa-solid fa-user me-2"></i>profil</NuxtLink>
             </li>
+            <li class="nav-item" v-if="auth.isLoggedIn && auth.isAdmin">
+              <NuxtLink class="nav-link" to="/admin"> <i class="fa-solid fa-user-gear me-2"></i>Administration</NuxtLink>
+            </li>
             <li class="nav-item" v-if="auth.isLoggedIn">
               <a class="nav-link" href="#" @click="handleLogout"><i class="fa-solid fa-right-from-bracket me-2"></i> Déconnexion</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" aria-labelledby="cart" class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
+              <CartCanva />
             </li>
           </ul>
           

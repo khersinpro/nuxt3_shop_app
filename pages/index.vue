@@ -33,8 +33,5 @@ const articles = await useApiFetch("/article")
     object-fit: cover;
     filter: brightness(0.7);
   }
-  &--presentation {
-
-  }
 }
 </style>
