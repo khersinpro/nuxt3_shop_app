@@ -6,7 +6,8 @@ type User = {
     id: number,
     firstName: string,
     lastName: String,
-    email: string
+    email: string,
+    role_name: String
 }
 
 type Credentials = {
@@ -25,13 +26,20 @@ export const useAuthStore = defineStore('auth', () => {
     // Déclaration des constantes
     const user = ref<User | null>(null)
     const isLoggedIn = computed(() => !!user.value)
+    const isAdmin = computed(() => !!(user.value?.role_name === "ROLE_ADMIN"))
+
+    // Empeche les modifications depuis le navigateur client
+    watch([isLoggedIn, isAdmin], () => {
+        fetchUser();
+    })
 
     // Récupération de l'utilisateur puis on le set dans l'utilsateur
     async function fetchUser() {
         const { data , error} = await useApiFetch("/user/check")
-        console.log(error);
-        
-        user.value = data.value as User
+        if (user.value !== data.value)
+        {
+            user.value = data.value as User
+        }
     }
 
     // Fonction permettant de se connecter et de stocker l'utilsiateur
@@ -72,5 +80,5 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     // Retour des fonctions et données du store
-    return {user, login, isLoggedIn, fetchUser, logout, register, fullname}
+    return {user, login, isLoggedIn, fetchUser, logout, register, fullname, isAdmin}
 })

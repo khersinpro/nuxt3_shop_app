@@ -39,4 +39,5 @@ export default defineNuxtConfig({
     // SCSS file in the project
     "~/assets/style/main.scss", // you should add main.scss somewhere in your app
   ],
+  ssr: true
 })

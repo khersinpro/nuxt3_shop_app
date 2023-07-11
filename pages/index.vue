@@ -1,11 +1,6 @@
 <script lang="ts" setup>
+const articles = await useApiFetch("/article")
 
-async function getArticles () {
-  const {data, error} = await useApiFetch("/article")
-  return {data, error}
-}
-
-const articles = await getArticles();
 
 </script>
 
