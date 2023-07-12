@@ -15,13 +15,13 @@ const auth = useAuthStore();
     </h1>
     <ul class="list-group">
       <li class="list-group-item">
-        Nom : {{ auth.user.lastName }}
+        Nom : {{ auth.user?.lastName }}
       </li>
       <li class="list-group-item">
-        Prénom : {{ auth.user.firstName }}
+        Prénom : {{ auth.user?.firstName }}
       </li>
       <li class="list-group-item">
-        Email : {{ auth.user.email }}
+        Email : {{ auth.user?.email }}
       </li>
     </ul>
   </section>

@@ -1,6 +1,16 @@
 <script lang="ts" setup>
-const articles = await useApiFetch("/article")
+type Article = {
+  id: number,
+  name: string,
+  description: string,
+  price: number
+}
 
+let articles: Article[] | [] = [];
+
+const response = await useApiFetch("/article")
+
+if (response.data.value) articles = response.data.value as Article[] 
 
 </script>
 
@@ -18,7 +28,7 @@ const articles = await useApiFetch("/article")
     <div class="container">
       <h1 class="mb-4 h2">Liste des articles</h1>
       <div class="row">
-        <articleCard v-for="article in articles.data.value" :article="article" :key="article.id"/>
+        <articleCard v-for="article in articles" :article="article" :key="article.id"/>
       </div>
     </div>
   </section>

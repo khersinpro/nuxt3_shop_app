@@ -1,7 +1,14 @@
 <script lang="ts" setup>
-const id = (useRoute()).params.id
+type Article = {
+  name: string,
+  description: string,
+  price: number
+}
+
+const id: string | string[] = (useRoute()).params.id 
 const data = await useApiFetch('/article/' + id)
-const article = data.data.value
+const article: Article | null  = data.data.value as Article
+
 </script>
 
 <template>
