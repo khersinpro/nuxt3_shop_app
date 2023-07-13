@@ -1,11 +1,17 @@
 <script lang="ts" setup>
-// import nuxtStorage from 'nuxt-storage';
+
+type Article = {
+  name: string,
+  description: string,
+  price: number
+}
+
 import { useCartStore } from '../../stores/useCartStore';
 const cart = useCartStore()
 
-const id = (useRoute()).params.id
+const id: string | string[] = (useRoute()).params.id 
 const data = await useApiFetch('/article/' + id)
-const article = data.data.value
+const article: Article | null  = data.data.value as Article
 
 </script>
 
