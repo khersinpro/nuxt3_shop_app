@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-type Article = {
-  id: number,
-  name: string,
-  description: string,
-  price: number
-}
 
 let articles: Article[] | [] = [];
 

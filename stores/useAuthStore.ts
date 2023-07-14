@@ -1,27 +1,5 @@
 import { defineStore } from "pinia";
 
-
-// Déclaration des modèles
-type User = {
-    id: number,
-    firstName: string,
-    lastName: String,
-    email: string,
-    role_name: String
-}
-
-type Credentials = {
-    email: string,
-    password: string
-}
-
-type RegisterInfo = {
-    firstName: String,
-    lastName: String,
-    email: String,
-    password: String
-}
-
 export const useAuthStore = defineStore('auth', () => {
     // Déclaration des constantes
     const user = ref<User | null>(null)

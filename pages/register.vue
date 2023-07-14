@@ -24,8 +24,6 @@ async function handleRegister() {
     // affichage de message d'erreur
   }
 }
-
-
 </script>
 
 <template>

@@ -1,11 +1,4 @@
 <script lang="ts" setup>
-
-type Article = {
-  name: string,
-  description: string,
-  price: number
-}
-
 import { useCartStore } from '../../stores/useCartStore';
 const cart = useCartStore()
 
