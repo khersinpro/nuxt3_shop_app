@@ -9,7 +9,10 @@ const article: Article | null  = data.data.value as Article
 </script>
 
 <template>
-  <section id="unique-article my-5">
+  <section id="unique-article" class="py-5">
+    <div class="container">
+      <button @click="$router.back()" class="btn btn-outline-primary mb-3 float-left">Retour</button>
+    </div>
     <div class="article-container container">
       <div class="card h-100">
         <img src="/images/img-test.jpeg" class="card-img-top" alt="image de test">
@@ -17,7 +20,14 @@ const article: Article | null  = data.data.value as Article
           <h5 class="card-title fw-bold">{{article.name}}</h5>
           <p class="card-text flex-fill">{{ article.description }}</p>
           <p class="card-text fw-bold">{{ article.price }} €</p>
-          <button @click="cart.getArticle(article.id, article.name, article.price)" class="btn btn-primary" type="button">Ajouter au pannier</button>
+
+          <button 
+            @click="cart.getArticle(article.id, article.name, article.price)" 
+            class="btn btn-primary" 
+            type="button"
+          >
+            Ajouter au pannier
+          </button>
         </div>
       </div>
     </div>
