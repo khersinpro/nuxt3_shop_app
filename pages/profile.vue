@@ -8,6 +8,7 @@ definePageMeta({
 
 const auth = useAuthStore();
 </script>
+
 <template>
   <section class=" my-5 container profile">
     <h1 class="mb-3 h2">
