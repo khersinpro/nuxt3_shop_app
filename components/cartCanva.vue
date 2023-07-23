@@ -2,12 +2,8 @@
 import { useCartStore } from '../stores/useCartStore';
 
 const props = defineProps(['cart'])
-
 const cart = useCartStore()
 
-watch(cart.cart, () => {
-
-})
 </script>
 
 <template>
@@ -24,23 +20,28 @@ watch(cart.cart, () => {
 
       <!-- Liste des articles -->
       <ul class="list-group list-group-flush flex-fill">
+        <!-- Article unique -->
         <li class="list-group-item" v-for="cartitem in cart.cart" :key="cartitem.id" >
           {{ cartitem.id }}
           {{ cartitem.name }}
           {{ cartitem.price }}
-          {{ cartitem.quantity }}
+
+          <!-- Modifier la quantité d'un article -->
+          <div>
+            <button @click="cart.removeArticleQuantity(cartitem.id)" class="btn btn-danger">-</button>
+            <input v-model="cartitem.quantity" type="number" id="quantity" name="quantity" min="1" max="10" class="form-control w-25 me-2">
+            <button @click="cart.addArticleQuantity(cartitem.id)" class="btn btn-success">+</button>  
+          </div>
         </li>
       </ul>
 
       <!-- Résumé du pannier -->
       <div class="container border-top">
         <p class="fs-6 fw-bold mt-2">
-          Prix total: 
-          <span> 19,99€</span>
+          Prix total: <span class="text-secondary">{{ cart.getCartTotalPrice() }} €</span>
         </p>
         <p class="fs-6 fw-bold">
-          Nombre d'article: 
-          <span> 19,99€</span>
+          Nombre d'article: Prix total: <span class="text-secondary">{{ cart.getCartTotalQuantity() }}</span>
         </p>
       </div>
 
