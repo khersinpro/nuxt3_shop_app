@@ -50,7 +50,7 @@ const cart = useCartStore()
         <p class="fs-6 fw-bold">
           Nombre d'article: Prix total: <span class="text-secondary">{{ cart.getCartTotalQuantity() }}</span>
         </p>
-        <button class="btn btn-primary w-100">Aller au pannier</button>
+        <NuxtLink to="/pannier" class="btn btn-primary w-100">Aller au pannier</NuxtLink>
       </div>
 
     </div>
