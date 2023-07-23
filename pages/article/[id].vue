@@ -35,29 +35,32 @@ const {data, error} = await useApiFetch<Article>('/article/' + id)
           <p class="card-text flex-fill">{{ data.description }}</p>
           <p class="card-text fw-bold">{{ data.price }} €</p>
 
-          <!-- Bouton d'ajout au pannier -->
-          <div class="d-flex flex-row align-items-center">
-            <label class="me-2" for="quantity">Quantité :</label>
-            <button @click="quantity--">-</button>
-            <input 
-              v-model="quantity" 
-              type="number" 
-              id="quantity" 
-              name="quantity" 
-              min="1" 
-              max="10" 
-              class="form-control w-25 me-2"
+          <!-- Container du bouon d'ajout au panier -->
+          <div class="container d-flex px-0">
+            <div class="d-flex flex-row align-items-center me-2">
+              <label class="me-2 text-nowrap" for="quantity">Quantité :</label>
+              <button @click="quantity--" class="btn btn-danger">-</button>
+              <input 
+                v-model="quantity" 
+                type="number" 
+                id="quantity" 
+                name="quantity" 
+                min="1" 
+                max="10" 
+                class="form-control mx-2"
+              >
+              <button @click="quantity++" class="btn btn-success">+</button>
+            </div>
+  
+            <button 
+              @click="cart.addArticle(data.id, data.name, data.price, quantity)" 
+              class="btn btn-primary" 
+              type="button"
             >
-            <button @click="quantity++">+</button>
+              Ajouter au pannier
+            </button>
           </div>
 
-          <button 
-            @click="cart.addArticle(data.id, data.name, data.price, quantity)" 
-            class="btn btn-primary" 
-            type="button"
-          >
-            Ajouter au pannier
-          </button>
         </div>
       </div>
 

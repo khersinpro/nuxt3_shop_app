@@ -74,7 +74,7 @@ export const useCartStore = defineStore('cart', () => {
         cart.value.forEach(article => {
             totalPrice += article.price * article.quantity
         })
-        return totalPrice
+        return totalPrice.toFixed(2)
     }
 
     function getCartTotalQuantity () {
